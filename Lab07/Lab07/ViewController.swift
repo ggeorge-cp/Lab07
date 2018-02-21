@@ -37,12 +37,15 @@ class ViewController: UIViewController {
                     
                     for school in allSchools.schools {
                         if let zip_code = school.zip {
-                            if (Array(zip_code)[0] == "9") && (Array(zip_code)[1] == "3") {
+                            if zip_code.count == 5 {
+                                if (Array(zip_code)[0] == "9") && (Array(zip_code)[1] == "3") {
+                                    
+                                    
+                                    self.databaseRef?.child(school.name!).setValue(school.toAnyObject())
+                                }
                                 
-                                self.databaseRef?.setValue(school.toAnyObject())
                             }
                         }
-                        
                     }
                     
                     self.schools = allSchools
